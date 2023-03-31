@@ -12,6 +12,9 @@ export default {
         addGoal() {
             this.goals.push({id: id++, text: this.newGoal, done: false})
             this.newGoal = '';
+        },
+        clearGoals() {
+            this.goals = [];
         }
     }
 }
@@ -27,7 +30,8 @@ export default {
     <form @submit.prevent="addGoal">
         <h3>GOALS FOR THE DAY</h3>
         <input type="text" v-model="newGoal" />
-        <button>Add Goal</button>
+        <button type="submit">Add Goal</button>
+        <button @click="clearGoals" type="reset">Reset</button>
     </form>
     <ul>
         <li v-for="goal in goals" :key="goal.id">

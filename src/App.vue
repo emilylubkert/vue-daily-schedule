@@ -1,6 +1,8 @@
 <script setup>
 import Date from './components/Date.vue';
 import Goal from './components/Goal.vue';
+import Schedule from './components/Schedule.vue';
+import ToDoList from './components/ToDoList.vue';
 
 </script>
 
@@ -8,6 +10,8 @@ import Goal from './components/Goal.vue';
   <div id="app">
     <Date />
     <Goal />
+    <ToDoList />
+    <Schedule />
   </div>
 
 </template>
