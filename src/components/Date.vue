@@ -25,7 +25,7 @@ export default {
         <!-- <p v-if="date.length > 3">{{ date }}</p> -->
         <input v-model="date" />
         <ul>
-            <li v-for="(day, index) in days" @click="handleSelect(index)" :class="index === isSelected && 'selected'">{{ day
+            <li v-for="(day, index) in days" @click="handleSelect(index)" :class="index === isSelected && 'selected' ">{{ day
             }}</li>
         </ul>
     </div>

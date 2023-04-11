@@ -9,7 +9,10 @@ export default {
         return{
             newAppt: '',
             appts: [],
-            times: _.range(7, 13).concat(_.range(1, 9))
+            times: _.range(7, 13).concat(_.range(1, 9)),
+            isSelected: false,
+            workSelected: [],
+            personalSelected: []
         }
     },
     methods: {
@@ -17,10 +20,25 @@ export default {
             this.appts.push({id: id++, text: this.newAppt})
             this.newAppt = '';
 
-
         },
         clear() {
             this.appts = [];
+        },
+
+        handleWorkSelect(index) {
+            if(this.workSelected.includes(index)) {
+                this.workSelected = this.workSelected.filter(el => el !== index)
+            } else {
+                this.workSelected.push(index);
+            }
+        },
+
+        handlePersonalSelect(index) {
+            if(this.personalSelected.includes(index)) {
+                this.personalSelected = this.personalSelected.filter(el => el !== index)
+            } else {
+                this.personalSelected.push(index);
+            }
         }
     }
 }
@@ -34,9 +52,11 @@ export default {
 
 <template>
     <ul>
-        <li v-for="time in times" :key="time">
+        <li v-for="(time, index) in times" :key="time">
             <label >{{ time }}</label>
-            <input type="text" />
+            <input type="text"  :class="workSelected.includes(index)  && 'work-selected' || personalSelected.includes(index) && 'personal-selected'"/>
+            <button type="button" @click="handlePersonalSelect(index)"  >Personal</button>
+            <button type="button" @click="handleWorkSelect(index)"  >Work</button>
         </li>
     </ul>
 
@@ -58,6 +78,14 @@ li {
 
 .done {
   text-decoration: line-through;
+}
+
+.work-selected {
+    background-color: #B7A1FF;
+}
+
+.personal-selected {
+    background-color: #e9ffa1;
 }
 
 
